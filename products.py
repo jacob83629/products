@@ -1,12 +1,19 @@
+import os #operating system
 products = []
-with open('products.csv', 'r') as f:
-	for line in f:
-		if '商品, 價格' in line:
-			continue #只能在迴圈裡面寫 跳到下一回
-		name, price = line.strip().split(',')
-		products.append([name, price])
-		
-#split切割   strip去掉換行符號
+if os.path.isfile('products.csv'):
+	print('yeah! 找到檔案了')
+	with open('products.csv', 'r') as f:
+		for line in f:
+			if '商品, 價格' in line:
+				continue #只能在迴圈裡面寫 跳到下一回
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	#split切割   strip去掉換行符號
+
+else:
+	print('找不到檔案')
+
+
 while True:
     name = input('請輸入商品名稱:')
     if name == 'q':
