@@ -1,4 +1,12 @@
 products = []
+with open('products.csv', 'r') as f:
+	for line in f:
+		if '商品, 價格' in line:
+			continue #只能在迴圈裡面寫 跳到下一回
+		name, price = line.strip().split(',')
+		products.append([name, price])
+		
+#split切割   strip去掉換行符號
 while True:
     name = input('請輸入商品名稱:')
     if name == 'q':
@@ -11,7 +19,7 @@ print(products)
 for p in products:
 	print(p[0], '的價格是', p[1])
 
-with open('products.csv', 'w', encoding='utf-8') as f: 
+with open('products.csv', 'w') as f: 
 	f.write('商品, 價格\n')
 	for p in products:
 		f.write(p[0] + ',' + str(p[1]) + '\n')
